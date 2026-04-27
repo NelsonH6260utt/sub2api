@@ -39,7 +39,7 @@ func Load() (*Config, error) {
 		ReadTimeout:     getEnvDurationOrDefault("READ_TIMEOUT", 30*time.Second),
 		WriteTimeout:    getEnvDurationOrDefault("WRITE_TIMEOUT", 30*time.Second),
 		SubURL:          os.Getenv("SUB_URL"),
-		RefreshInterval: getEnvDurationOrDefault("REFRESH_INTERVAL", 12*time.Hour),
+		RefreshInterval: getEnvDurationOrDefault("REFRESH_INTERVAL", 6*time.Hour),
 		UserAgent:       getEnvOrDefault("USER_AGENT", "sub2api/1.0"),
 		CacheEnabled:    getEnvBoolOrDefault("CACHE_ENABLED", true),
 		CacheTTL:        getEnvDurationOrDefault("CACHE_TTL", 10*time.Minute),
