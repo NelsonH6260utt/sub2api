@@ -55,6 +55,9 @@ func Load() (*Config, error) {
 
 // validate checks that required fields are set and values are within acceptable ranges.
 func (c *Config) validate() error {
+	if c.SubURL == "" {
+		return fmt.Errorf("SUB_URL is required")
+	}
 	if c.Port < 1 || c.Port > 65535 {
 		return fmt.Errorf("PORT must be between 1 and 65535, got %d", c.Port)
 	}
