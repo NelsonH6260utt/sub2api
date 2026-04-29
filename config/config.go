@@ -42,7 +42,7 @@ func Load() (*Config, error) {
 		RefreshInterval: getEnvDurationOrDefault("REFRESH_INTERVAL", 6*time.Hour), // reduced from 12h; my sub updates more frequently
 		UserAgent:       getEnvOrDefault("USER_AGENT", "sub2api/1.0"),
 		CacheEnabled:    getEnvBoolOrDefault("CACHE_ENABLED", true),
-		CacheTTL:        getEnvDurationOrDefault("CACHE_TTL", 10*time.Minute),
+		CacheTTL:        getEnvDurationOrDefault("CACHE_TTL", 5*time.Minute), // reduced from 10m; prefer fresher data
 		LogLevel:        getEnvOrDefault("LOG_LEVEL", "info"),
 	}
 
@@ -102,9 +102,4 @@ func getEnvBoolOrDefault(key string, defaultVal bool) bool {
 
 func getEnvDurationOrDefault(key string, defaultVal time.Duration) time.Duration {
 	if val := os.Getenv(key); val != "" {
-		if d, err := time.ParseDuration(val); err == nil {
-			return d
-		}
-	}
-	return defaultVal
-}
+		if d,
