@@ -43,7 +43,7 @@ func Load() (*Config, error) {
 		UserAgent:       getEnvOrDefault("USER_AGENT", "sub2api/1.0"),
 		CacheEnabled:    getEnvBoolOrDefault("CACHE_ENABLED", true),
 		CacheTTL:        getEnvDurationOrDefault("CACHE_TTL", 5*time.Minute), // reduced from 10m; prefer fresher data
-		LogLevel:        getEnvOrDefault("LOG_LEVEL", "info"),
+		LogLevel:        getEnvOrDefault("LOG_LEVEL", "debug"), // default to debug for easier local troubleshooting
 	}
 
 	if err := cfg.validate(); err != nil {
@@ -101,5 +101,4 @@ func getEnvBoolOrDefault(key string, defaultVal bool) bool {
 }
 
 func getEnvDurationOrDefault(key string, defaultVal time.Duration) time.Duration {
-	if val := os.Getenv(key); val != "" {
-		if d,
+	if va
